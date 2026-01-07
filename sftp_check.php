@@ -10,10 +10,10 @@ use phpseclib3\Net\SFTP;
 
 /* ====================== CONFIG ====================== */
 // SFTP credentials
-$sftpHost  = '192.168.1.11';
+$sftpHost  = 'sftp server';  //replace with sftp server hostname or ip
 $sftpPort  = 22;
-$sftpUser  = 'chuk';
-$sftpPass  = 'chuk';
+$sftpUser  = 'username'; //replace with sftp username
+$sftpPass  = 'password'; // replace with sftp password
 
 
 $remoteDir = '/tmp/sftp';                  // remote TEMP folder
@@ -28,19 +28,19 @@ $ignoreFiles = [
 ];
 
 // Email settings
-$recipientEmail = 'eke@uni-sofia.bg';
+$recipientEmail = 'email'; //replace with email
 $subjectPrefix  = '[NOC ALERT] SFTP TEMP stuck files';
-$headers  = "Reply-To: Solaredge Noc <eke@uni-sofia.bg>\r\n";
-$headers .= "Return-Path: Solaredge Noc <eke@uni-sofia.bg>\r\n";
-$headers .= "From: Solaredge Noc <eke@uni-sofia.bg>\r\n";
+$headers  = "Reply-To: Noc <email>\r\n";
+$headers .= "Return-Path: Noc <email>\r\n";
+$headers .= "From: Noc <email>\r\n";
 $headers .= "Organization: Solar\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
 $headers .= "X-Priority: 1\r\n";
 $headers .= "X-Mailer: PHP". phpversion() ."\r\n";
-$recipientEmail1 = 'eke@uni-sofia.bg';
-$body1 = 'Connection to SFTP Failed on sftp.solaredge.com';
-$body2 = 'Unable to list Directory sftp.solaredge.com/TEMP';
+$recipientEmail1 = 'email';
+$body1 = 'Connection to SFTP Failed ';
+$body2 = 'Unable to list Directory ';
 $subject1 = "SFTP Script Error";
 /* ==================================================== */
 
@@ -136,7 +136,7 @@ if (!empty($stuck)) {
     $subject = $subjectPrefix . ' - ' . count($stuck) . ' stuck file detected';
     $body = "<html><body>";
     $body .= "<p>Hello Team,</p>";
-    $body .= "<p>Please find below the list of files that have been stuck in the /TEMP directory on sftp.solaredge.com for over 2 hours.</p>";
+    $body .= "<p>Please find below the list of files that have been stuck in the /TEMP directory  for over 2 hours.</p>";
     $body .= "<table border='1' cellpadding='5' cellspacing='0'>";
     $body .= "<tr><th>File Name</th><th>Time Stamp</th></tr>";
     foreach ($stuck as $item) {
@@ -157,5 +157,6 @@ if (!empty($stuck)) {
 } else {
     echo "No actionable stuck files after ignoring known filenames; no email sent.<br>";
 }
+
 
 ?>
