@@ -1,4 +1,5 @@
 <?php
+// This script was created by Chuck Ekeh
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
